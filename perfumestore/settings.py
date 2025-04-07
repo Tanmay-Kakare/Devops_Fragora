@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ubym=b^4uy(bl6ipu7ocw&y-6bbac35w_-sk@*9wx2&ukkg%%v'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','x23269782devopssec-env.eba-rswmaxy8.us-east-2.elasticbeanstalk.com']
 
 # Installed Apps
 INSTALLED_APPS = [
