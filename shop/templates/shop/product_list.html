@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfume Store</title>
+</head>
+<body>
+    <h2>Perfume Collection</h2>
+    {% for perfume in perfumes %}
+        <div>
+            <h3>{{ perfume.name }}</h3>
+            <p>{{ perfume.description }}</p>
+            <p>€{{ perfume.price }}</p>
+        </div>
+    {% empty %}
+        <p>No perfumes found.</p>
+    {% endfor %}
+</body>
+</html>

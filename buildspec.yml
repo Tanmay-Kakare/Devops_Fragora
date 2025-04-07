@@ -1,0 +1,22 @@
+﻿version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+      - pip install pylint pylint-django
+      - npm install -g sonar-scanner
+  pre_build:
+    commands:
+      - echo "Running Django collectstatic..."
+      - python manage.py collectstatic --noinput
+      - pylint shop | tee pylint-report.txt
+  build:
+    commands:
+      - echo "Running SonarCloud Scan"
+      - sonar-scanner -Dsonar.token=$SONAR_TOKEN
+artifacts:
+  files:
+    - '**/*'

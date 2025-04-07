@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Features - Fragora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="container-fluid sticky-top" style="background-color: #f6ead5;">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img src="{% static 'img/FRAGORA [ LOGO ] Png.png' %}" alt="FRAGORA" style="width: 30%; height: 30%;">
+            </a>
+            <button class="navbar-toggler ms-auto me-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url 'products' %}" class="nav-item nav-link">Products</a>
+                    <a href="{% url 'account' %}" class="nav-item nav-link">Account</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!-- Feature Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-4">Why Choose Fragora?</h2>
+    <p class="text-center mb-5 text-muted">We blend art and science to create timeless fragrances just for you.</p>
+
+    <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Long-Lasting Scents</h5>
+                    <p class="card-text">Crafted with premium essential oils, our perfumes last all day long.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Eco-Friendly Packaging</h5>
+                    <p class="card-text">Sustainable materials and stunning designs go hand in hand.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Cruelty-Free</h5>
+                    <p class="card-text">We’re proudly cruelty-free and committed to ethical practices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center py-4 mt-4" style="background-color: #f6ead5;">
+    <p class="mb-0">&copy; 2025 Fragora. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

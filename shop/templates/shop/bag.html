@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+  <h2>Your Bag</h2>
+  {% if orders %}
+    <ul>
+      {% for order in orders %}
+        <li>{{ order.perfume.name }} - Quantity: {{ order.quantity }} - €{{ order.total_price }}</li>
+      {% endfor %}
+    </ul>
+    <p><strong>Total: €{{ total }}</strong></p>
+  {% else %}
+    <p>Your bag is empty.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Cart</h2>
+
+    {% if orders %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Perfume</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.perfume.name }}</td>
+                    <td>€{{ order.perfume.price }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>€{{ order.total_price }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td><strong>€{{ total }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
