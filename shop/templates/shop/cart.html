@@ -2,16 +2,44 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Your Cart</h2>
+    <h2 class="mb-4">Your Cart</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
     {% if orders %}
-        <ul class="list-group">
+        <ul class="list-group mb-3">
             {% for order in orders %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ order.perfume.name }} x {{ order.quantity }}
-                    <span>€{{ order.total_price }}</span>
+                    <div class="d-flex align-items-start">
+                        {% if order.perfume.image %}
+                            <img src="{{ order.perfume.image.url }}" alt="{{ order.perfume.name }}"
+                                 class="img-thumbnail me-3" style="width: 100px; height: auto;">
+                        {% endif %}
+                        <div>
+                            <strong>{{ order.perfume.name }}</strong><br>
+                            €{{ order.perfume.price }} each
+                            <form method="POST" action="{% url 'update_cart' order.id %}" class="d-inline-block mt-2">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" value="{{ order.quantity }}" min="1" class="form-control d-inline w-auto" style="display:inline-block;">
+                                <button type="submit" class="btn btn-sm btn-outline-primary">Update</button>
+                            </form>
+                            <form method="POST" action="{% url 'delete_from_cart' order.id %}" class="d-inline-block mt-2 ms-2">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                    <span><strong>Subtotal:</strong> €{{ order.total_price }}</span>
                 </li>
             {% endfor %}
         </ul>
+        <div class="text-end">
+            <h4>Total: €{{ total_price }}</h4>
+        </div>
     {% else %}
         <p>Your cart is empty.</p>
     {% endif %}

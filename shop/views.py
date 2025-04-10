@@ -5,9 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Perfume, Order
 
-# -----------------------------------
 # Public Views
-# -----------------------------------
 
 def index(request):
     return render(request, 'index.html')
@@ -29,9 +27,8 @@ def product(request):
     return render(request, 'products.html', {'perfumes': perfumes})
 
 
-# -----------------------------------
+
 # Authentication Views
-# -----------------------------------
 
 def signup_view(request):
     if request.method == 'POST':
@@ -96,6 +93,7 @@ def delete_account(request):
 
 # Cart CRUD Views
 
+
 @login_required
 def add_to_cart(request, perfume_id):
     perfume = get_object_or_404(Perfume, id=perfume_id)
@@ -113,7 +111,8 @@ def add_to_cart(request, perfume_id):
 @login_required
 def view_cart(request):
     orders = Order.objects.filter(user=request.user)
-    return render(request, 'shop/cart.html', {'orders': orders})
+    total_price = sum(order.total_price() for order in orders)
+    return render(request, 'shop/cart.html', {'orders': orders, 'total_price': total_price})
 
 @login_required
 def update_cart(request, order_id):
@@ -143,10 +142,7 @@ def empty_cart(request):
     messages.success(request, "Your cart has been emptied.")
     return redirect('cart')
 
-
-# -----------------------------------
 # Custom Error Handler
-# -----------------------------------
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
