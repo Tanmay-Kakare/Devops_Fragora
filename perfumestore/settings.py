@@ -53,23 +53,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'perfumestore.wsgi.application'
 
 # Database
-import os
-
-if DEBUG:  # Local Dev
+if os.environ.get('ENV') == 'PRODUCTION':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': '/tmp/db.sqlite3',  # writable path in EB
         }
     }
-else:  # Production
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/tmp/db.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',  # for local development
         }
     }
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
